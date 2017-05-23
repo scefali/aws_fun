@@ -7,7 +7,9 @@ import * as api from './api';
 export const sendEmail = () => {
     return (dispatch, getState) => {
         const state = getState();
-        api.sendEmail(state);
+        api.sendEmail(state).then(response => {
+            console.log('response', response);
+        })
 
     }
 }

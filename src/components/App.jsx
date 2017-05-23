@@ -7,7 +7,7 @@ import * as thunks from './../thunks'
 
 var App = (props) => (
     <form onSubmit={props.handleSubmit}>
-        <Field name='email' component={RenderField} type='email' label='email' />
+        <Field name='email' component={RenderField} type='text' label='email' />
         <Field name='message' component={RenderField} type='text' label='message' />
         <button type='submit'>Send</button>
     </form>

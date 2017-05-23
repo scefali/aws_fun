@@ -22,6 +22,7 @@
     "bootstrap": "3.3.7",
     "browserfy": "^1.0.0",
     "camelcase": "^4.1.0",
+    "claudia-api-builder": "^2.4.2",
     "cookie-parser": "^1.4.3",
     "creditcards": "^2.1.2",
     "fbemitter": "^2.0.2",
