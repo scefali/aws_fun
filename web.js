@@ -3,6 +3,6 @@ var ApiBuilder = require('claudia-api-builder'),
 
 module.exports = api;
 
-api.post('/email', () => {
-    return 'test'
+api.post('/email', (request) => {
+    return request
 });

@@ -16,6 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "aws-sdk": "^2.53.0",
+    "aws-serverless-express": "^3.0.1",
     "axios": "^0.16.1",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
@@ -25,6 +26,7 @@
     "claudia-api-builder": "^2.4.2",
     "cookie-parser": "^1.4.3",
     "creditcards": "^2.1.2",
+    "express": "^4.15.2",
     "fbemitter": "^2.0.2",
     "flux": "^3.1.2",
     "immutable": "^3.8.1",

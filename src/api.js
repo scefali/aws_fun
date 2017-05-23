@@ -5,8 +5,8 @@ import { formValueSelector } from 'redux-form';
 const selector = formValueSelector('app');
 
 
-const baseUrl = 'https://qckt5va6l2.execute-api.us-west-1.amazonaws.com/latest';
-
+//const baseUrl = 'https://84ymx11lba.execute-api.us-west-1.amazonaws.com/latest';
+const baseUrl = 'http://localhost:2000'
 
 const postAction = (route, data) => {
     const endpoint = baseUrl + route;
@@ -15,5 +15,6 @@ const postAction = (route, data) => {
 
 export const sendEmail = state => {
     const { email, message } = selector(state, 'email', 'message');
+    //console.log('email', email)
     return postAction('/email', { email, message })
 }
