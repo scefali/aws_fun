@@ -62,7 +62,9 @@ exports.sendEmail = (req, res) => {
     };
     sns.publish(params, function(err, data) {
         if (err) console.log(err, err.stack); // an error occurred
-        else console.log(data); // successful response
+        else {
+            console.log(data);
+            res.send(data);
+        } // successful response
     });
-    res.send('HELLO');
 }
