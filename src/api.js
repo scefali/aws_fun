@@ -16,6 +16,6 @@ const postAction = (route, data) => {
 }
 
 export const sendEmail = state => {
-    const { email, message } = selector(state, 'email', 'message');
-    return postAction('/email', { email, message })
+    const { email, message, subject } = selector(state, 'email', 'message', 'subject');
+    return postAction('/sendEmail', { email, message, subject })
 }
