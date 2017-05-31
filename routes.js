@@ -22,7 +22,7 @@ module.exports = app => {
     //TODO: Use static path instead of html markup
     //app.use('/', express.static(path.join(__dirname, 'src')));
     app.get('/', (req, res) => {
-        res.sendFile(path.join(__dirname, 'index.html'))
+        res.sendFile(path.join(__dirname, 'static/html/index.html'))
     });
 
     app.post('/subscribeEmail', (req, res) => {
@@ -41,21 +41,3 @@ module.exports = app => {
         next(err);
     });
 }
-
-// const params = {
-//     AWSAccountId: [ /* required */
-//         account,
-//         /* more items */
-//     ],
-//     ActionName: [ /* required */
-//         'sns:Publish',
-//         /* more items */
-//     ],
-//     Label: 'STRING_VALUE',
-//     /* required */
-//     TopicArn: TopicArn /* required */
-// };
-// sns.addPermission(params, function(err, data) {
-//     if (err) console.log(err, err.stack); // an error occurred
-//     else console.log(data); // successful response
-// });

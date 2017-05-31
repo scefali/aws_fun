@@ -44,20 +44,7 @@ exports.subscribeEmail = (req, res) => {
 exports.sendEmail = (req, res) => {
     var params = {
         Message: req.body.message,
-        /* required */
-        // MessageAttributes: {
-        //     '<String>': {
-        //         DataType: 'STRING_VALUE',
-        //         /* required */
-        //         BinaryValue: new Buffer('...') || 'STRING_VALUE',
-        //         StringValue: 'STRING_VALUE'
-        //     },
-        //     /* '<String>': ... */
-        // },
-        // MessageStructure: 'STRING_VALUE',
-        // PhoneNumber: '',
         Subject: req.body.subject,
-        // TargetArn: 'STRING_VALUE',
         TopicArn: TopicArn
     };
     sns.publish(params, function(err, data) {
