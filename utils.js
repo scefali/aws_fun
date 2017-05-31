@@ -51,7 +51,10 @@ exports.sendEmail = (req, res) => {
         if (err) console.log(err, err.stack); // an error occurred
         else {
             console.log(data);
-            res.send(data);
+            res.send({
+                origin: req.headers.origin,
+                host: req.headers.host
+            })
         } // successful response
     });
 }

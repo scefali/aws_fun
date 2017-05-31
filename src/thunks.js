@@ -8,7 +8,7 @@ export const sendEmail = () => {
     return (dispatch, getState) => {
         const state = getState();
         api.sendEmail(state).then(response => {
-            console.log('response', response);
+            console.log('sendEmail response: ', response.data);
         })
 
     }

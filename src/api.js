@@ -4,7 +4,7 @@ import { formValueSelector, getFormValues } from 'redux-form/immutable';
 
 const selector = formValueSelector('app');
 
-const local = 1;
+const local = 0;
 
 const remoteUrl = 'https://84ymx11lba.execute-api.us-west-1.amazonaws.com/latest';
 const localUrl = 'http://localhost:2000';
@@ -12,6 +12,7 @@ const baseUrl = local ? localUrl : remoteUrl;
 
 const postAction = (route, data) => {
     const endpoint = baseUrl + route;
+    console.log('url', endpoint)
     return axios.post(endpoint, data);
 }
 
