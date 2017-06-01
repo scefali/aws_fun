@@ -15,17 +15,18 @@ const topicParams = {
 
 let TopicArn;
 
-sns.createTopic(topicParams, function(err, data) {
-    if (err) console.log(err, err.stack); // an error occurred
-    else console.log(data); // successful response
-    TopicArn = data.TopicArn;
-});
+// sns.createTopic(topicParams, function(err, data) {
+//     if (err) console.log(err, err.stack); // an error occurred
+//     else console.log(data); // successful response
+//     TopicArn = data.TopicArn;
+// });
+
+TopicArn = `arn:aws:sns:us-west-1:${account}:TOPIC`;
 
 
 
 //TODO Finish
 exports.subscribeEmail = (req, res) => {
-    console.log('got request', req.body);
 
     var params = {
         Protocol: 'email',
@@ -42,19 +43,22 @@ exports.subscribeEmail = (req, res) => {
 
 
 exports.sendEmail = (req, res) => {
+    console.log('got request in send email', req.body);
     var params = {
         Message: req.body.message,
         Subject: req.body.subject,
         TopicArn: TopicArn
     };
     sns.publish(params, function(err, data) {
-        if (err) console.log(err, err.stack); // an error occurred
-        else {
+        if (err) {
+            console.log(err, err.stack); // an error occurred
+            res.status(400).send(err)
+        } else {
             console.log(data);
             res.send({
                 origin: req.headers.origin,
                 host: req.headers.host
             })
-        } // successful response
+        }
     });
 }
