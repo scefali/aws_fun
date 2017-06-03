@@ -5,9 +5,8 @@ import { Field, reduxForm, getFormValues} from 'redux-form/immutable';
 import RenderField from './RenderField';
 import * as thunks from './../thunks'
 
-var App = (props) => (
+var Message = (props) => (
     <form onSubmit={props.handleSubmit}>
-        <Field name='email' component={RenderField} type='text' label='email' />
         <Field name='subject' component={RenderField} type='text' label='subject' />
         <Field name='message' component={RenderField} type='text' label='message' />
         <button type='submit'>Send</button>
@@ -27,6 +26,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 })
 
 
-App = reduxForm({form: 'app'})(App)
+Message = reduxForm({form: 'message'})(Message)
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(Subscribe)

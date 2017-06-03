@@ -5,9 +5,18 @@ import { persistStore, autoRehydrate, createTransform } from 'redux-persist-immu
 import { Provider } from 'react-redux'
 import Immutable from 'immutable'
 import ReduxThunk from 'redux-thunk'
+import createHistory from 'history/createBrowserHistory'
+import { Route } from 'react-router'
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 
-import App from './components/App'
+import Subscribe from './components/Subscribe'
 import reducer from './reducers/reducer'
+
+
+
+const history = createHistory()
+const routerHistory = routerMiddleware(history)
+
 
 
 const store = createStore(
@@ -15,21 +24,20 @@ const store = createStore(
   undefined,
   compose(
     applyMiddleware(ReduxThunk),
+    applyMiddleware(routerHistory),
     autoRehydrate()
   )
 )
 
 
-//we load in view from the process state
-// const persistConfig = {
-//     blacklist: ['view', 'secure', 'form']
-// }
-//persistStore(store, persistConfig)
-
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+      <ConnectedRouter history={history}>
+        <div>
+          <Route exact path="/" component={Subscribe}/>
+        </div>
+      </ConnectedRouter>
     </Provider>,
     document.getElementById('app')
 )
