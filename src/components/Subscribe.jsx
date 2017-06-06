@@ -36,9 +36,10 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	onSubmit: () => {
-        dispatch(thunks.sendEmail());
+        dispatch(thunks.subscribe());
   	},
     nextPage: () => {
+        dispatch(thunks.changePage('message'))
     }
 })
 

@@ -42,7 +42,7 @@ exports.subscribeEmail = (req, res) => {
 }
 
 
-exports.sendEmail = (req, res) => {
+exports.sendMessage = (req, res) => {
     console.log('got request in send email', req.body);
     var params = {
         Message: req.body.message,

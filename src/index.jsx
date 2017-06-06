@@ -10,6 +10,7 @@ import { Route } from 'react-router'
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 
 import Subscribe from './components/Subscribe'
+import Message from './components/Message'
 import reducer from './reducers/reducer'
 
 
@@ -35,7 +36,8 @@ ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <div>
-          <Route exact path="/" component={Subscribe}/>
+          <Route exact path="/subscribe" component={Subscribe}/>
+          <Route exact path="/message" component={Message}/>
         </div>
       </ConnectedRouter>
     </Provider>,

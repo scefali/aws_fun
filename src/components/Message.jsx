@@ -21,11 +21,11 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	onSubmit: () => {
-        dispatch(thunks.sendEmail());
+        dispatch(thunks.sendMessage());
   	}
 })
 
 
 Message = reduxForm({form: 'message'})(Message)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Subscribe)
+export default connect(mapStateToProps, mapDispatchToProps)(Message)
