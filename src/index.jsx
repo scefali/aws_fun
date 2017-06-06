@@ -36,8 +36,10 @@ ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <div>
+          TEST 2
           <Route exact path="/subscribe" component={Subscribe}/>
           <Route exact path="/message" component={Message}/>
+          <Route exact path="/" component={Message}/>
         </div>
       </ConnectedRouter>
     </Provider>,
