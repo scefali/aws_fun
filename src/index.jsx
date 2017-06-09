@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import Immutable from 'immutable'
 import ReduxThunk from 'redux-thunk'
 import createHistory from 'history/createHashHistory'
-import { Route } from 'react-router'
+import { Route, Redirect } from 'react-router'
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 
 import Subscribe from './components/Subscribe'
@@ -36,8 +36,10 @@ ReactDOM.render(
       <ConnectedRouter history={history}>
         <div>
           <h1>AWF Fun</h1>
+          2
           <Route exact path="/subscribe" component={Subscribe}/>
           <Route exact path="/message" component={Message}/>
+          <Route exact path="/" render={() => ( <Redirect to="/message"/> )} />
         </div>
       </ConnectedRouter>
     </Provider>,
