@@ -5,8 +5,11 @@ import { Field, reduxForm, getFormValues} from 'redux-form/immutable'
 import RenderField from './RenderField'
 import RadioButton from './RadioButton'
 import * as thunks from './../thunks'
+import * as util from './../util'
 
 const  { DOM: { input, select, textarea } } = React
+
+
 
 var Subscribe = (props) => (
     <div>
@@ -18,7 +21,8 @@ var Subscribe = (props) => (
             <Field name='email' component={RenderField} type='text' label='email' />
             <button type='submit'>{props.buttonText}</button>
         </form>
-        <button type='button' onClick={props.nextPage}>Next</button>
+        <button type='button' onClick={props.goToPage('message')}>Go To Send Message</button>
+        <button type='button' onClick={props.goToPage('Topic')}>Go To Create Topic</button>
     </div>
 )
 
@@ -28,8 +32,9 @@ const initialValues = {
 }
 
 const mapStateToProps = (state, ownProps) => {
+    const buttonText = util.subscribeSelector(state, 'action')
     return {
-        buttonText: 'Subscribe',
+        buttonText,
         initialValues
     }
 }
@@ -38,8 +43,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	onSubmit: () => {
         dispatch(thunks.subscribe());
   	},
-    nextPage: () => {
-        dispatch(thunks.changePage('message'))
+    goToPage: page => {
+        () => dispatch(thunks.changePage(page))
     }
 })
 

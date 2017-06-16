@@ -11,7 +11,6 @@ export const sendMessage = () => {
         api.sendMessage(state).then(response => {
             console.log('sendMessage response: ', response.data);
         })
-
     }
 }
 
@@ -24,6 +23,20 @@ export const changePage = nextPage => {
 
 export const subscribe = () => {
     return (dispatch, getState) => {
-        //FIXME
+        const state = getState();
+        console.log('subscribe', state.toJS())
+        api.subscribe(state).then(response => {
+            console.log('subscribe response: ', response.data);
+        })
+    }
+}
+
+export const Topic = () => {
+    return (dispatch, getState) => {
+        const state = getState();
+        console.log('Topic', state.toJS())
+        api.Topic(state).then(response => {
+            console.log('Topic response: ', response.data);
+        })
     }
 }

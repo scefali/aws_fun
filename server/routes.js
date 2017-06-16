@@ -4,7 +4,7 @@ const utils = require('./utils');
 
 
 const staticPage = (req, res) => {
-    res.sendFile(path.join(__dirname, 'static/index.html'));
+    res.sendFile(path.join(__dirname, './../static/index.html'));
 }
 
 
@@ -18,16 +18,18 @@ module.exports = app => {
     });
 
 
-    app.use('/static', express.static(__dirname + '/static'));
+    app.use('/static', express.static(__dirname + '../static'));
 
     //TODO: Use static path instead of html markup
     //app.use('/', express.static(path.join(__dirname, 'src')));
-    app.get('/', staticPage)
-    app.get('/message', staticPage)
-    app.get('/subscribe', staticPage)
+    app.get('/*', staticPage)
 
     app.post('/subscribeEmail', (req, res) => {
         utils.subscribeEmail(req, res);
+    })
+
+    app.post('/unsubscribeEmail', (req, res) => {
+        utils.unsubscribeEmail(req, res);
     })
 
     app.post('/sendMessage', (req, res) => {

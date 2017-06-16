@@ -11,6 +11,7 @@ import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-ro
 
 import Subscribe from './components/Subscribe'
 import Message from './components/Message'
+import Topic from './components/Topic'
 import reducer from './reducers/reducer'
 
 
@@ -35,11 +36,11 @@ ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <div>
-          <h1>AWF Fun</h1>
-          2
+          <h1>AWS Fun</h1>
           <Route exact path="/subscribe" component={Subscribe}/>
           <Route exact path="/message" component={Message}/>
-          <Route exact path="/" render={() => ( <Redirect to="/message"/> )} />
+          <Route exact path="/Topic" component={Topic}/>
+          <Route exact path="/*" render={() => ( <Redirect to="/Topic"/> )} />
         </div>
       </ConnectedRouter>
     </Provider>,

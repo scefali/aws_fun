@@ -6,11 +6,14 @@ import RenderField from './RenderField';
 import * as thunks from './../thunks'
 
 var Message = (props) => (
-    <form onSubmit={props.handleSubmit}>
-        <Field name='subject' component={RenderField} type='text' label='subject' />
-        <Field name='message' component={RenderField} type='text' label='message' />
-        <button type='submit'>Send</button>
-    </form>
+    <div>
+        <form onSubmit={props.handleSubmit}>
+            <Field name='subject' component={RenderField} type='text' label='subject' />
+            <Field name='message' component={RenderField} type='text' label='message' />
+            <button type='submit'>Send</button>
+        </form>
+        <button type='button' onClick={props.goToSubscribe}>Subscribe/Unsubscribe</button>
+    </div>
 )
 
 
@@ -22,7 +25,10 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	onSubmit: () => {
         dispatch(thunks.sendMessage());
-  	}
+  	},
+    goToSubscribe: () => {
+        dispatch(thunks.changePage('subscribe'))
+    }
 })
 
 

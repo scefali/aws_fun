@@ -15,7 +15,7 @@ const topicParams = {
 
 let TopicArn;
 
-// sns.createTopic(topicParams, function(err, data) {
+// sns.Topic(topicParams, function(err, data) {
 //     if (err) console.log(err, err.stack); // an error occurred
 //     else console.log(data); // successful response
 //     TopicArn = data.TopicArn;
@@ -27,7 +27,6 @@ TopicArn = `arn:aws:sns:us-west-1:${account}:TOPIC`;
 
 //TODO Finish
 exports.subscribeEmail = (req, res) => {
-
     var params = {
         Protocol: 'email',
         /* required */
@@ -40,6 +39,23 @@ exports.subscribeEmail = (req, res) => {
         else console.log(data); // successful response
     });
 }
+
+exports.unsubscribeEmail = (req, res) => {
+    var params = {
+        Protocol: 'email',
+        /* required */
+        TopicArn: TopicArn,
+        /* required */
+        Endpoint: req.body.email
+    };
+    sns.unsubscribe(params, function(err, data) {
+        if (err) console.log(err, err.stack); // an error occurred
+        else {
+            console.log(data); // successful response
+        }
+    });
+}
+
 
 
 exports.sendMessage = (req, res) => {

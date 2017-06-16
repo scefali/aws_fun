@@ -18,7 +18,7 @@ const combined = combineReducers(reducers);
 const reducer = (state = Immutable.fromJS({}), action) => {
     //console.log('state', state.toJS());
     //console.log('action', action)
-    console.log('route', state.toJS().router)
+    //console.log('route', state.toJS().router)
     return combined(state, action);
 }
 
