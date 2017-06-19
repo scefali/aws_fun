@@ -17,6 +17,7 @@ export const sendMessage = () => {
 
 export const changePage = nextPage => {
     return (dispatch, getState) => {
+        console.log('nextPage', nextPage)
         dispatch(push('/' + nextPage))
     }
 }
@@ -31,12 +32,12 @@ export const subscribe = () => {
     }
 }
 
-export const Topic = () => {
+export const topic = () => {
     return (dispatch, getState) => {
         const state = getState();
-        console.log('Topic', state.toJS())
-        api.Topic(state).then(response => {
-            console.log('Topic response: ', response.data);
+        console.log('topic', state.toJS())
+        api.topic(state).then(response => {
+            console.log('topic response: ', response.data);
         })
     }
 }

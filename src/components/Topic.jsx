@@ -22,7 +22,12 @@ var Topic = (props) => (
             <Field name='topicName' component={RenderField} type='text' label='Name' />
             <button type='submit'>{props.buttonText}</button>
         </form>
-        <button type='button' onClick={props.goToSubscribe}>Go To Subscribe</button>
+        <div>
+            <button type='button' onClick={props.goToPage('message')}>Go To Send Message</button>
+        </div>
+        <div>
+            <button type='button' onClick={props.goToPage('subscribe')}>Go To Subscribe</button>
+        </div>
     </div>
 )
 
@@ -43,8 +48,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	onSubmit: () => {
         dispatch(thunks.topic());
   	},
-    goToSubscribe: () => {
-        dispatch(thunks.changePage('subscribe'))
+    goToPage: page => {
+        return () => dispatch(thunks.changePage(page))
     }
 })
 

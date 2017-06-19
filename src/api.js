@@ -11,7 +11,7 @@ const baseUrl = local ? localUrl : remoteUrl
 
 const postAction = (route, data) => {
     const endpoint = baseUrl + route
-        //console.log('url', endpoint)
+    console.log('postAction', endpoint, data)
     return axios.post(endpoint, data)
 }
 
@@ -26,8 +26,8 @@ export const subscribe = state => {
     return postAction(endpoint, { email })
 }
 
-export const Topic = state => {
-    const { topicAction, topicName } = util.subscribeSelector(state, 'topicAction', 'topicName')
+export const topic = state => {
+    const { topicAction, topicName } = util.topicSelector(state, 'topicAction', 'topicName')
     const endpoint = `/${topicAction}Topic`
-    return postAction(endpoint, { email })
+    return postAction(endpoint, { topicName })
 }

@@ -8,11 +8,17 @@ import * as thunks from './../thunks'
 var Message = (props) => (
     <div>
         <form onSubmit={props.handleSubmit}>
+            <Field name='topicName' component={RenderField} type='text' label='topic name' />
             <Field name='subject' component={RenderField} type='text' label='subject' />
             <Field name='message' component={RenderField} type='text' label='message' />
             <button type='submit'>Send</button>
         </form>
-        <button type='button' onClick={props.goToSubscribe}>Subscribe/Unsubscribe</button>
+        <div>
+            <button type='button' onClick={props.goToPage('topic')}>Go To Topic</button>
+        </div>
+        <div>
+            <button type='button' onClick={props.goToPage('subscribe')}>Go To Subscribe</button>
+        </div>
     </div>
 )
 
@@ -26,8 +32,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	onSubmit: () => {
         dispatch(thunks.sendMessage());
   	},
-    goToSubscribe: () => {
-        dispatch(thunks.changePage('subscribe'))
+    goToPage: page => {
+        return () => dispatch(thunks.changePage(page))
     }
 })
 

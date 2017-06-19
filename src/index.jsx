@@ -39,8 +39,8 @@ ReactDOM.render(
           <h1>AWS Fun</h1>
           <Route exact path="/subscribe" component={Subscribe}/>
           <Route exact path="/message" component={Message}/>
-          <Route exact path="/Topic" component={Topic}/>
-          <Route exact path="/*" render={() => ( <Redirect to="/Topic"/> )} />
+          <Route exact path="/topic" component={Topic}/>
+          <Route exact path="/*" render={() => ( <Redirect to="/topic"/> )} />
         </div>
       </ConnectedRouter>
     </Provider>,
