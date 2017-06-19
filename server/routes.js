@@ -4,7 +4,7 @@ const utils = require('./utils');
 
 
 const staticPage = (req, res) => {
-    res.sendFile(path.join(__dirname, './../static/index.html'));
+    res.sendFile(path.join(__dirname, '../static/index.html'));
 }
 
 
