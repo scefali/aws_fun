@@ -9,7 +9,7 @@ module.exports = app;
 
 
 const router = express.Router();
-app.use(express.static(path.join(__dirname, 'static')));
+app.use(express.static(path.join(__dirname, '../static')));
 
 
 app.use(bodyParser.json());

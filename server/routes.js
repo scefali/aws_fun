@@ -4,7 +4,9 @@ const utils = require('./utils');
 
 
 const staticPage = (req, res) => {
-    res.sendFile(path.join(__dirname, '../static/index.html'));
+    const indexPath = path.join(__dirname, '../static/index.html');
+    console.log('path', indexPath)
+    res.sendFile(indexPath);
 }
 
 
@@ -17,11 +19,6 @@ module.exports = app => {
         next();
     });
 
-
-    app.use('/static', express.static(__dirname + '../static'));
-
-    //TODO: Use static path instead of html markup
-    //app.use('/', express.static(path.join(__dirname, 'src')));
     app.get('/*', staticPage)
 
     app.post('/subscribeEmail', (req, res) => {
