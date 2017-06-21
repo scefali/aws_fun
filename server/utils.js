@@ -3,10 +3,10 @@ const AWS = require('aws-sdk');
 
 const account = process.env.AWS_ACCOUNT_ID;
 
-const sns = new AWS.SNS({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    region: 'us-west-1'
-});
+// const sns = new AWS.SNS({
+//     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+//     region: 'us-west-1'
+// });
 
 // const topicParams = {
 //     Name: 'TOPIC' /* required */

@@ -2,6 +2,8 @@ const path = require('path')
 const express = require('express')
 const sns = require('./../sns')
 
+console.log('sns', sns)
+
 
 
 const account = process.env.AWS_ACCOUNT_ID
