@@ -1,6 +1,7 @@
 const path = require('path')
 const express = require('express')
-const utils = require('./utils')
+const utils = require('./../utils')
+const topics = require('./topics')
 
 
 const staticPage = (req, res) => {
@@ -33,7 +34,7 @@ module.exports = app => {
         utils.sendMessage(req, res)
     })
 
-    app.post('/createTopic', utils.createTopic)
+    app.use('/topics', topics)
 
     //keep at bottom
     // catch 404 and forward to error handler
