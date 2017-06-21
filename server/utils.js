@@ -22,24 +22,6 @@ const sns = new AWS.SNS({
 
 //TopicArn = `arn:aws:sns:us-west-1:${account}:TOPIC`;
 
-const getTopicArn = topicName => {
-    return `arn:aws:sns:us-west-1:${account}:${topicName}`;
-}
-
-
-exports.createTopic = (req, res) => {
-    const topicParams = { Name: req.body.topicName }
-    sns.topic(topicParams, function(err, data) {
-        if (err) {
-            console.log(err, err.stack); // an error occurred
-            res.send(err)
-        } else {
-            console.log(data); // successful response
-            res.send(data)
-        }
-    });
-}
-
 
 //TODO Finish
 exports.subscribeEmail = (req, res) => {
@@ -54,7 +36,7 @@ exports.subscribeEmail = (req, res) => {
     sns.subscribe(params, function(err, data) {
         if (err) {
             console.log(err, err.stack); // an error occurred
-            res.send(err)
+            res.status(500).send(err)
         } else {
             console.log(data); // successful response
             res.send(data)
@@ -74,7 +56,7 @@ exports.unsubscribeEmail = (req, res) => {
     sns.unsubscribe(params, function(err, data) {
         if (err) {
             console.log(err, err.stack); // an error occurred
-            res.send(err)
+            res.status(500).send(err)
         } else {
             console.log(data); // successful response
             res.send(data)

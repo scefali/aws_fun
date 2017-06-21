@@ -18,4 +18,4 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(router);
 app.use(awsServerlessExpressMiddleware.eventContext())
 
-require('./routes')(router);
+require('./routes/routes')(router);
