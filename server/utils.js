@@ -29,7 +29,7 @@ const getTopicArn = topicName => {
 
 exports.createTopic = (req, res) => {
     const topicParams = { Name: req.body.topicName }
-    sns.topic(topicParams, function(err, data) {
+    sns.createTopic(topicParams, function(err, data) {
         if (err) {
             console.log(err, err.stack); // an error occurred
             res.send(err)
