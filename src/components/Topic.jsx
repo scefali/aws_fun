@@ -16,8 +16,8 @@ var Topic = (props) => (
         <h2>Create or Delete an AWS Topic</h2>
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field name='topicAction'   field='create' component={RadioButton} />
-                <Field name='topicAction'   field='delete' component={RadioButton} />
+                <Field name='action'   field='create' component={RadioButton} />
+                <Field name='action'   field='delete' component={RadioButton} />
             </div>
             <Field name='topicName' component={RenderField} type='text' label='Name' />
             <button type='submit'>{props.buttonText}</button>
@@ -33,11 +33,11 @@ var Topic = (props) => (
 
 
 const initialValues = {
-    topicAction: 'create'
+    action: 'create'
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const buttonText = util.topicSelector(state, 'topicAction')
+    const buttonText = util.topicSelector(state, 'action')
     return {
         buttonText,
         initialValues

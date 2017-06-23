@@ -1,7 +1,9 @@
 const path = require('path')
 const express = require('express')
+
 const utils = require('./../utils')
 const topics = require('./topics')
+const subscriptions = require('./subscriptions')
 
 
 const staticPage = (req, res) => {
@@ -22,19 +24,12 @@ module.exports = app => {
 
     app.get('/*', staticPage)
 
-    app.post('/subscribeEmail', (req, res) => {
-        utils.subscribeEmail(req, res)
-    })
-
-    app.post('/unsubscribeEmail', (req, res) => {
-        utils.unsubscribeEmail(req, res)
-    })
-
     app.post('/sendMessage', (req, res) => {
         utils.sendMessage(req, res)
     })
 
     app.use('/topics', topics)
+    app.use('/subscriptions', subscriptions)
 
     //keep at bottom
     // catch 404 and forward to error handler

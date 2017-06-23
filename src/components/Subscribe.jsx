@@ -19,6 +19,7 @@ var Subscribe = (props) => (
                 <Field name='action' field='unsubscribe' component={RadioButton} />
             </div>
             <Field name='email' component={RenderField} type='text' label='email' />
+            <Field name='topicName' component={RenderField} type='text' label='topic' />
             <button type='submit'>{props.buttonText}</button>
         </form>
         <div>

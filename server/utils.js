@@ -1,7 +1,11 @@
 const AWS = require('aws-sdk');
 
 
-const account = process.env.AWS_ACCOUNT_ID;
+const account = process.env.AWS_ACCOUNT_ID
+
+exports.getTopicArn = topicName => {
+    return `arn:aws:sns:us-west-1:${account}:${topicName}`;
+}
 
 // const sns = new AWS.SNS({
 //     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -23,45 +27,7 @@ const account = process.env.AWS_ACCOUNT_ID;
 //TopicArn = `arn:aws:sns:us-west-1:${account}:TOPIC`;
 
 //TODO Finish
-exports.subscribeEmail = (req, res) => {
-    const TopicArn = getTopicArn(req.body.topicName)
-    const params = {
-        Protocol: 'email',
-        /* required */
-        TopicArn,
-        /* required */
-        Endpoint: req.body.email
-    };
-    sns.subscribe(params, function(err, data) {
-        if (err) {
-            console.log(err, err.stack); // an error occurred
-            res.status(500).send(err)
-        } else {
-            console.log(data); // successful response
-            res.send(data)
-        }
-    });
-}
 
-exports.unsubscribeEmail = (req, res) => {
-    const TopicArn = getTopicArn(req.body.topicName)
-    var params = {
-        Protocol: 'email',
-        /* required */
-        TopicArn,
-        /* required */
-        Endpoint: req.body.email
-    };
-    sns.unsubscribe(params, function(err, data) {
-        if (err) {
-            console.log(err, err.stack); // an error occurred
-            res.status(500).send(err)
-        } else {
-            console.log(data); // successful response
-            res.send(data)
-        }
-    });
-}
 
 
 

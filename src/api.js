@@ -31,21 +31,26 @@ const apiDelete = (route, data) => {
 //     return apiPost('/sendMessage', { message, subject })
 // }
 
-// export const subscribe = state => {
-//     const { action, email } = util.subscribeSelector(state, 'action', 'email')
-//     const endpoint = `/${action}Email`
-//     return apiPost(endpoint, { email })
-// }
-
-export const topic = state => {
-    const { topicAction, topicName } = util.topicSelector(state, 'topicAction', 'topicName')
+export const subscribe = state => {
+    const { action, email, topicName } = util.subscribeSelector(state, 'action', 'email', 'topicName')
 
     let verb = 'post'
-    let body = { topicName }
-    if (topicAction === 'delete') {
+    let body = { topicName, email }
+    if (action === 'delete') {
         verb = 'delete'
         body = { params: body }
     }
-    console.log('body', body)
+    return apiAction('/subscriptions', body, verb)
+}
+
+export const topic = state => {
+    const { action, topicName } = util.topicSelector(state, 'action', 'topicName')
+
+    let verb = 'post'
+    let body = { topicName }
+    if (action === 'delete') {
+        verb = 'delete'
+        body = { params: body }
+    }
     return apiAction('/topics', body, verb)
 }
