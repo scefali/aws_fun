@@ -13,7 +13,6 @@ const baseUrl = local ? localUrl : remoteUrl
 
 const apiAction = (route, data, verb) => {
     const endpoint = baseUrl + route
-    console.log(verb, endpoint, data)
     return axios[verb](endpoint, data)
 }
 

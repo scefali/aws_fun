@@ -28,6 +28,11 @@ export const subscribe = () => {
         console.log('subscribe', state.toJS())
         api.subscribe(state).then(response => {
             console.log('subscribe response: ', response.data);
+        }).catch(err => {
+            const message = err.response.data
+            if (message === 'Topic does not exist') {
+                //dispatch()
+            }
         })
     }
 }

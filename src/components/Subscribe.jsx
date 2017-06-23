@@ -11,6 +11,11 @@ const  { DOM: { input, select, textarea } } = React
 
 
 
+const RenderError = (props) => (
+    <div>
+    </div>
+)
+
 var Subscribe = (props) => (
     <div>
         <form onSubmit={props.handleSubmit}>
@@ -28,6 +33,7 @@ var Subscribe = (props) => (
         <div>
             <button type='button' onClick={props.goToPage('topic')}>Go To Create Topic</button>
         </div>
+        <RenderError />
     </div>
 )
 

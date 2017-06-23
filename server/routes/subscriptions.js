@@ -19,10 +19,12 @@ const subscribeEmail = (req, res) => {
         /* required */
         Endpoint: req.body.email
     };
-    console.log('params', params)
     sns.subscribe(params, function(err, data) {
         if (err) {
-            console.log(err, err.stack); // an error occurred
+            if (err.message === 'Topic does not exist') {
+                err = err.message
+            }
+            console.log('subscribe err', err); // an error occurred
             res.status(500).send(err)
         } else {
             console.log(data); // successful response
