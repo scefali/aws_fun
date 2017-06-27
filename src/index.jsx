@@ -40,7 +40,7 @@ ReactDOM.render(
           <Route exact path="/subscribe" component={Subscribe}/>
           <Route exact path="/message" component={Message}/>
           <Route exact path="/topic" component={Topic}/>
-          <Route exact path="/*" render={() => ( <Redirect to="/topic"/> )} />
+          <Route exact path="/*" render={() => ( <Redirect to="/subscribe"/> )} />
         </div>
       </ConnectedRouter>
     </Provider>,

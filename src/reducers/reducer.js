@@ -5,12 +5,13 @@ import { REHYDRATE } from 'redux-persist/constants';
 import { routerReducer } from 'react-router-redux'
 import * as _ from 'lodash';
 
-//import mainReducer from './mainReducer'
+import subscribeReducer from './subscribeReducer'
 
 
 const reducers = {
     form: formReducer,
-    router: routerReducer
+    router: routerReducer,
+    subsribe: subscribeReducer
 }
 
 const combined = combineReducers(reducers);

@@ -33,6 +33,7 @@ var Subscribe = (props) => (
         <div>
             <button type='button' onClick={props.goToPage('topic')}>Go To Create Topic</button>
         </div>
+        {props.subscribeError}
         <RenderError />
     </div>
 )
@@ -44,9 +45,11 @@ const initialValues = {
 
 const mapStateToProps = (state, ownProps) => {
     const buttonText = util.subscribeSelector(state, 'action')
+    const subscribeError = state.getIn(['subsribe', 'subscribeError'])
     return {
         buttonText,
-        initialValues
+        initialValues,
+        subscribeError
     }
 }
 
