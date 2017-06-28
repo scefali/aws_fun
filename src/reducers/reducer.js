@@ -6,12 +6,14 @@ import { routerReducer } from 'react-router-redux'
 import * as _ from 'lodash';
 
 import subscribeReducer from './subscribeReducer'
+import messageReducer from './messageReducer'
 
 
 const reducers = {
     form: formReducer,
     router: routerReducer,
-    subsribe: subscribeReducer
+    subscribe: subscribeReducer,
+    message: messageReducer
 }
 
 const combined = combineReducers(reducers);

@@ -24,11 +24,10 @@ const apiDelete = (route, data) => {
     return apiAction(route, data, 'delete')
 }
 
-//FIXME
-// export const sendMessage = state => {
-//     const { message, subject } = util.messageSelector(state, 'message', 'subject')
-//     return apiPost('/sendMessage', { message, subject })
-// }
+export const sendMessage = state => {
+    const { message, subject, topicName } = util.messageSelector(state, 'message', 'subject', 'topicName')
+    return apiPost('/messages', { message, subject, topicName })
+}
 
 export const subscribe = state => {
     const { action, email, topicName } = util.subscribeSelector(state, 'action', 'email', 'topicName')

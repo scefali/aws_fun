@@ -45,7 +45,7 @@ const initialValues = {
 
 const mapStateToProps = (state, ownProps) => {
     const buttonText = util.subscribeSelector(state, 'action')
-    const subscribeError = state.getIn(['subsribe', 'subscribeError'])
+    const subscribeError = state.getIn(['subscribe', 'subscribeError'])
     return {
         buttonText,
         initialValues,

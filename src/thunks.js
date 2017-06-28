@@ -34,7 +34,7 @@ export const subscribe = () => {
         }).catch(err => {
             const message = err.response.data
             if (message === 'Topic does not exist') {
-                dispatch(actions.invalidTopic({ topicName }))
+                dispatch(actions.invalidSubscribeTopic({ topicName }))
             }
         })
     }

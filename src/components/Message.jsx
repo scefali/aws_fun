@@ -19,6 +19,7 @@ var Message = (props) => (
         <div>
             <button type='button' onClick={props.goToPage('subscribe')}>Go To Subscribe</button>
         </div>
+        {props.messageError}
     </div>
 )
 

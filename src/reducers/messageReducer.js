@@ -1,7 +1,6 @@
 import Immutable from 'immutable'
 
 
-import * as consts from './../consts'
 
 const gensubscribeError = topicName => {
     if (!topicName) {
@@ -18,7 +17,7 @@ const initialState = Immutable.fromJS({
 
 const subscribeReducer = (state = initialState, action) => {
     switch (action.type) {
-        case consts.INVALID_SUSBCRIBE_TOPIC:
+        case 'invalidTopic':
             const topicName = action.payload.topicName
             const subscribeError = gensubscribeError(topicName)
             return state.merge({ subscribeError });
