@@ -3,7 +3,7 @@ import axios from 'axios'
 import * as util from './util'
 
 
-const local = 1
+const local = window.location.hostname === 'localhost'
 
 const remoteUrl = 'https://84ymx11lba.execute-api.us-west-1.amazonaws.com/latest'
 const localUrl = 'http://localhost:2000'

@@ -17,6 +17,7 @@ const sendMessage = (req, res) => {
         Subject: req.body.subject,
         TopicArn
     }
+    console.log('received message', params)
     sns.publish(params, function(err, data) {
         if (err) {
             if (err.message === 'Topic does not exist') {

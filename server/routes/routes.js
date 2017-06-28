@@ -17,7 +17,8 @@ const staticPage = (req, res) => {
 module.exports = app => {
     app.use((req, res, next) => {
         //console.log('got request in default handler', req)
-        res.header("Access-Control-Allow-Origin", "https://s3-us-west-1.amazonaws.com")
+        //res.header("Access-Control-Allow-Origin", "https://s3-us-west-1.amazonaws.com,http://awsfun.click")
+        res.header("Access-Control-Allow-Origin", "*")
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
         next()
