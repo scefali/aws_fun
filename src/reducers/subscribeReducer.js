@@ -18,7 +18,7 @@ const initialState = Immutable.fromJS({
 
 const subscribeReducer = (state = initialState, action) => {
     switch (action.type) {
-        case consts.INVALID_SUSBCRIBE_TOPIC:
+        case consts.INVALID_SUBSCRIBE_TOPIC:
             const topicName = action.payload.topicName
             const subscribeError = gensubscribeError(topicName)
             return state.merge({ subscribeError });
