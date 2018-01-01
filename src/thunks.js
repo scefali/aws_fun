@@ -1,5 +1,4 @@
 import Immutable from 'immutable'
-import Promise from 'bluebird'
 import { routerMiddleware, push } from 'react-router-redux'
 
 import * as api from './api'

@@ -59,11 +59,11 @@ typings/
 
 *.hot-update.*
 
-bundle.*
-
 .env
 
 
 .serverless
 
 creds.sh
+
+dist
