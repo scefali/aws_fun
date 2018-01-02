@@ -8,8 +8,7 @@ const messages = require('./messages')
 
 
 const staticPage = (req, res) => {
-    const indexPath = path.join(__dirname, '../static/index.html')
-    console.log('path', indexPath)
+    const indexPath = path.join(__dirname, '../../static/index.html')
     res.sendFile(indexPath)
 }
 
@@ -24,11 +23,14 @@ module.exports = app => {
         next()
     })
 
-    app.get('/*', staticPage)
+    app.get('/', staticPage)
 
     app.use('/topics', topics)
     app.use('/subscriptions', subscriptions)
     app.use('/messages', messages)
+
+    app.use('/dist', express.static('dist'))
+
 
     //keep at bottom
     // catch 404 and forward to error handler
