@@ -18,7 +18,6 @@ export const sendMessage = () => {
 
 export const changePage = nextPage => {
     return (dispatch, getState) => {
-        console.log('nextPage', nextPage)
         dispatch(push('/' + nextPage))
     }
 }

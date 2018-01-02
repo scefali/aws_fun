@@ -2,12 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { compose, createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import Immutable from 'immutable'
-import ReduxThunk from 'redux-thunk'
 import createHistory from 'history/createHashHistory'
-import { Route, Redirect } from 'react-router'
+import { Router } from 'react-router'
 import RedBox from 'redbox-react'
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
+import { routerMiddleware, push, syncHistoryWithStore } from 'react-router-redux'
 
 import configureStore from './store'
 
@@ -15,19 +13,33 @@ import './style.less'
 
 const rootEl = document.getElementById('app')
 
+const createSelectLocationState = () => {
+  let prevRoutingState, prevRoutingStateJS
+  return (state) => {
+    const routingState = state.get('router') // or state.routing
+    if (typeof prevRoutingState === 'undefined' || prevRoutingState !== routingState) {
+      prevRoutingState = routingState
+      prevRoutingStateJS = routingState.toJS()
+    }
+    return prevRoutingStateJS
+  }
+}
+
 // Create a reusable render method that we can call more than once
 let render = () => {
   const store = configureStore()
-
+  // Dynamically import our main App component, and render it
   const Routes = require('./components/Routes').default
-  const history = createHistory()
-  const routerHistory = routerMiddleware(history)
+  const history = syncHistoryWithStore(createHistory(), store, {
+    selectLocationState: createSelectLocationState
+  })
+  history.transitionTo = history.confirmTransitionTo
 
   ReactDOM.render(
     <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <Routes />
-      </ConnectedRouter>
+      <Router history={history}>
+        <Routes topLocation={history.location} />
+      </Router>
     </Provider>,
     rootEl
   )

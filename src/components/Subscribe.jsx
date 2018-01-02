@@ -23,10 +23,10 @@ var Subscribe = (props) => (
       <Button bsStyle="success">{props.buttonText}</Button>
     </form>
     <ButtonGroup>
-      <Button bsStyle="success" onClick={props.goToPage('message')}>
+      <Button bsStyle="info" onClick={props.goToPage('message')}>
         Go To Send Message
       </Button>
-      <Button bsStyle="success" onClick={props.goToPage('topic')}>
+      <Button bsStyle="info" onClick={props.goToPage('topic')}>
         Go To Create Topic
       </Button>
     </ButtonGroup>

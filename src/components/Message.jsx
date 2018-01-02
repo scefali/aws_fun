@@ -28,6 +28,7 @@ var Message = (props) => (
 )
 
 const mapStateToProps = (state, ownProps) => {
+  console.log('own', ownProps)
   return {}
 }
 
