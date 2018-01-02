@@ -8,7 +8,7 @@ const messages = require('./messages')
 
 
 const staticPage = (req, res) => {
-    const indexPath = path.join(__dirname, '../../static/index.html')
+    const indexPath = path.join(__dirname, '../../dist/index.html')
     res.sendFile(indexPath)
 }
 

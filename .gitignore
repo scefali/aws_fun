@@ -59,6 +59,8 @@ typings/
 
 *.hot-update.*
 
+bundle.*
+
 .env
 
 
@@ -66,4 +68,4 @@ typings/
 
 creds.sh
 
-dist
+main-styles.css
