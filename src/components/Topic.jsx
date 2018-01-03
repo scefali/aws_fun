@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm, getFormValues } from 'redux-form/immutable'
 
+import { Button, ButtonGroup, ToggleButtonGroup } from 'react-bootstrap/lib'
+
 import RenderField from './RenderField'
 import RadioButton from './RadioButton'
 import * as thunks from './../thunks'
@@ -10,24 +12,25 @@ import * as util from './../util'
 var Topic = (props) => (
   <div>
     <h2>Create or Delete an AWS Topic</h2>
-    <form onSubmit={props.handleSubmit}>
-      <div>
-        <Field name="action" field="create" component={RadioButton} />
-        <Field name="action" field="delete" component={RadioButton} />
-      </div>
+    <div>Please type the name of the AWS topic you want to create or delete</div>
+    <form>
+      <ToggleButtonGroup type="radio" name="action">
+        <Field name="action" type="radio" value="create" component={RadioButton} />
+        <Field name="action" type="radio" value="delete" component={RadioButton} />
+      </ToggleButtonGroup>
       <Field name="topicName" component={RenderField} type="text" label="Name" />
-      <button type="submit">{props.buttonText}</button>
+      <Button onClick={props.handleSubmit} bsStyle="success">
+        Submit
+      </Button>
     </form>
-    <div>
-      <button type="button" onClick={props.goToPage('message')}>
+    <ButtonGroup>
+      <Button bsStyle="info" onClick={props.goToPage('message')}>
         Go To Send Message
-      </button>
-    </div>
-    <div>
-      <button type="button" onClick={props.goToPage('subscribe')}>
+      </Button>
+      <Button bsStyle="info" onClick={props.goToPage('subscribe')}>
         Go To Subscribe
-      </button>
-    </div>
+      </Button>
+    </ButtonGroup>
   </div>
 )
 

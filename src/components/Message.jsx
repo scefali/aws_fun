@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm, getFormValues } from 'redux-form/immutable'
 
+import { Button, ButtonGroup } from 'react-bootstrap/lib'
+
 import RenderField from './RenderField'
 import * as thunks from './../thunks'
 
@@ -11,24 +13,21 @@ var Message = (props) => (
       <Field name="topicName" component={RenderField} type="text" label="topic name" />
       <Field name="subject" component={RenderField} type="text" label="subject" />
       <Field name="message" component={RenderField} type="text" label="message" />
-      <button type="submit">Send</button>
+      <Button bsStyle="success">Submit</Button>
     </form>
-    <div>
-      <button type="button" onClick={props.goToPage('topic')}>
+    <ButtonGroup>
+      <Button bsStyle="info" onClick={props.goToPage('topic')}>
         Go To Topic
-      </button>
-    </div>
-    <div>
-      <button type="button" onClick={props.goToPage('subscribe')}>
+      </Button>
+      <Button bsStyle="info" onClick={props.goToPage('subscribe')}>
         Go To Subscribe
-      </button>
-    </div>
+      </Button>
+    </ButtonGroup>
     {props.messageError}
   </div>
 )
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('own', ownProps)
   return {}
 }
 

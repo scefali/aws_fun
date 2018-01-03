@@ -1,9 +1,8 @@
 var e = module.exports;
 
 const nameConstants = [
-    'INVALID_SUBSCRIBE_TOPIC',
 
-];
+]
 
 
 

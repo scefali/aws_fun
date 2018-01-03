@@ -41,9 +41,9 @@ export const subscribe = () => {
 export const topic = () => {
     return (dispatch, getState) => {
         const state = getState()
-        console.log('topic', state.toJS())
+        const topicName = util.subscribeSelector(state, 'topicName')
         api.topic(state).then(response => {
-            console.log('topic response: ', response.data)
+            console.log('topic success', topicName)
         })
     }
 }

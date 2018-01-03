@@ -16,7 +16,7 @@ class Routes extends React.Component {
         <Route exact path="/subscribe" component={Subscribe} location={location} />
         <Route exact path="/message" component={Message} location={location} />
         <Route exact path="/topic" component={Topic} location={location} />
-        {/* <Route exact path="/*" render={() => <Redirect to="/subscribe" />} /> */}
+        <Route exact path="/" render={() => <Redirect to="/topic" />} />
       </div>
     )
   }
