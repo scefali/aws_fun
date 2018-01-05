@@ -16,17 +16,10 @@ const apiAction = (route, data, verb) => {
     return axios[verb](endpoint, data)
 }
 
-const apiPost = (route, data) => {
-    return apiAction(route, data, 'post')
-}
-
-const apiDelete = (route, data) => {
-    return apiAction(route, data, 'delete')
-}
 
 export const sendMessage = state => {
     const { message, subject, topicName } = util.messageSelector(state, 'message', 'subject', 'topicName')
-    return apiPost('/messages', { message, subject, topicName })
+    return apiAction('/messages', { message, subject, topicName }, 'post')
 }
 
 export const subscribe = state => {
@@ -41,6 +34,7 @@ export const subscribe = state => {
     return apiAction('/subscriptions', body, verb)
 }
 
+
 export const topic = state => {
     const { action, topicName } = util.topicSelector(state, 'action', 'topicName')
 
@@ -50,5 +44,13 @@ export const topic = state => {
         verb = 'delete'
         body = { params: body }
     }
+
+    return apiAction('/topics', body, verb)
+}
+
+
+export const getTopics = () => {
+    let verb = 'get'
+    let body = {}
     return apiAction('/topics', body, verb)
 }

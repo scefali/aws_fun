@@ -1,5 +1,6 @@
 import Immutable from 'immutable'
 import { routerMiddleware, push } from 'react-router-redux'
+import * as _ from 'lodash'
 
 import * as api from './api'
 import * as actions from './actions'
@@ -41,9 +42,29 @@ export const subscribe = () => {
 export const topic = () => {
     return (dispatch, getState) => {
         const state = getState()
-        const topicName = util.subscribeSelector(state, 'topicName')
+        const { action: actionType, topicName } = util.topicSelector(state, 'action', 'topicName')
         api.topic(state).then(response => {
-            console.log('topic success', topicName)
+            dispatch(actions.setTopicSuccess({ topicName, actionType }))
+        }).catch(error => {
+            dispatch(actions.setTopicFailure({ topicName, actionType }))
+        })
+    }
+}
+
+
+export const getTopics = () => {
+    return (dispatch, getState) => {
+        const state = getState()
+        api.getTopics(state).then(response => {
+            const topics = _.map(response.data.Topics, (topicObj) => {
+                const topicArn = topicObj.TopicArn
+                const splitName = topicArn.split(':')
+                const topic = splitName[splitName.length - 1]
+                return topic
+            })
+            dispatch(actions.loadTopicList(topics))
+        }).catch(error => {
+
         })
     }
 }

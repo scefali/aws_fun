@@ -10,6 +10,7 @@ import * as thunks from './../thunks'
 var Message = (props) => (
   <div>
     <form onSubmit={props.handleSubmit}>
+      <h3 />
       <Field name="topicName" component={RenderField} type="text" label="topic name" />
       <Field name="subject" component={RenderField} type="text" label="subject" />
       <Field name="message" component={RenderField} type="text" label="message" />

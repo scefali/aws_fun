@@ -7,6 +7,7 @@ import * as _ from 'lodash'
 
 import subscribeReducer from './subscribeReducer'
 import messageReducer from './messageReducer'
+import topicReducer from './topicReducer'
 import routerReducer from './customRouterReducer'
 
 
@@ -14,7 +15,8 @@ const reducers = {
     form: formReducer,
     router: routerReducer,
     subscribe: subscribeReducer,
-    message: messageReducer
+    message: messageReducer,
+    topic: topicReducer
 }
 
 const combined = combineReducers(reducers)

@@ -18,6 +18,12 @@ var Topic = (props) => (
         <Field name="action" type="radio" value="create" component={RadioButton} />
         <Field name="action" type="radio" value="delete" component={RadioButton} />
       </ToggleButtonGroup>
+      <div>
+        <h3 className="successMessage">{props.topicSuccessMessage}</h3>
+      </div>
+      <div>
+        <h3 className="errorMessage">{props.topicFailureMessage}</h3>
+      </div>
       <Field name="topicName" component={RenderField} type="text" label="Name" />
       <Button onClick={props.handleSubmit} bsStyle="success">
         Submit
@@ -40,9 +46,12 @@ const initialValues = {
 
 const mapStateToProps = (state, ownProps) => {
   const buttonText = util.topicSelector(state, 'action')
+  const { topicSuccessMessage, topicFailureMessage } = state.getIn([ 'topic' ]).toJS()
   return {
     buttonText,
-    initialValues
+    initialValues,
+    topicSuccessMessage,
+    topicFailureMessage
   }
 }
 

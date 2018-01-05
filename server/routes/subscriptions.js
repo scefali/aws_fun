@@ -6,9 +6,6 @@ const utils = require('./../utils')
 
 
 
-
-
-
 const subscribeEmail = (req, res) => {
     const TopicArn = utils.getTopicArn(req.body.topicName)
 

@@ -8,7 +8,7 @@ const messages = require('./messages')
 
 
 const staticPage = (req, res) => {
-    const indexPath = path.join(__dirname, '../../index.html')
+    const indexPath = path.join(__dirname, '../../public/index.html')
     res.sendFile(indexPath)
 }
 
@@ -16,19 +16,20 @@ const staticPage = (req, res) => {
 module.exports = app => {
     app.use((req, res, next) => {
         //console.log('got request in default handler', req)
-        //res.header("Access-Control-Allow-Origin", "https://s3-us-west-1.amazonaws.com,http://awsfun.click")
+        // res.header("Access-Control-Allow-Origin", "https://s3-us-west-1.amazonaws.com,http://www.awsfun.click")
         res.header("Access-Control-Allow-Origin", "*")
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
         next()
     })
 
-    app.get('/', staticPage)
 
     app.use('/topics', topics)
     app.use('/subscriptions', subscriptions)
     app.use('/messages', messages)
 
+    //FIXME: Use local server to delver HTML and assets
+    app.get('/', staticPage)
     app.use('/dist', express.static('dist'))
 
 
