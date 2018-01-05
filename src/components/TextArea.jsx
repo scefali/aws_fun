@@ -1,10 +1,10 @@
 import React from 'react'
 
-const RenderField = ({ input, label, type, name, meta: { touched, error, warning } }) => (
+const TextArea = ({ input, label, type, name, meta: { touched, error, warning } }) => (
   <div>
     <label>{label}</label>
     <div>
-      <input
+      <textarea
         id={input.name}
         {...input}
         placeholder={label}
@@ -17,4 +17,4 @@ const RenderField = ({ input, label, type, name, meta: { touched, error, warning
   </div>
 )
 
-export default RenderField
+export default TextArea

@@ -28,6 +28,12 @@ class SubscribeClass extends React.Component {
             <Field name="action" type="radio" value="subscribe" component={RadioButton} />
             <Field name="action" type="radio" value="unsubscribe" component={RadioButton} />
           </ToggleButtonGroup>
+          <div>
+            <h3 className="successMessage">{props.message}</h3>
+          </div>
+          <div>
+            <h3 className="errorMessage">{props.subscribeError}</h3>
+          </div>
           <Field name="email" component={RenderField} type="text" label="email" />
           <div>
             <div>
@@ -41,14 +47,10 @@ class SubscribeClass extends React.Component {
               ))}
             </Field>
           </div>
-          <Button bsStyle="success" onClick={props.handleSubmit}>
-            Submit
-          </Button>
           <div>
-            <h3 className="successMessage">{props.topicSuccessMessage}</h3>
-          </div>
-          <div>
-            <h3 className="errorMessage">{props.subscribeError}</h3>
+            <Button bsStyle="success" onClick={props.handleSubmit}>
+              Submit
+            </Button>
           </div>
         </form>
         <ButtonGroup>
@@ -71,13 +73,18 @@ const initialValues = {
 const mapStateToProps = (state, ownProps) => {
   var buttonText = util.subscribeSelector(state, 'action')
   if (!buttonText) buttonText = initialValues.action
-  const subscribeError = state.getIn([ 'subscribe', 'subscribeError' ])
+  const { subscribeError, subscribeSuccessMessage } = state.getIn([ 'subscribe' ]).toJS()
+  let message
+  if (subscribeSuccessMessage === 'pending') {
+    message = 'An email has been sent to you to confirm your subscription'
+  }
   const topics = state.getIn([ 'topic', 'topics' ])
   return {
     buttonText,
     initialValues,
     subscribeError,
-    topics
+    topics,
+    message
   }
 }
 

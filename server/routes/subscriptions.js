@@ -18,9 +18,6 @@ const subscribeEmail = (req, res) => {
     };
     sns.subscribe(params, function(err, data) {
         if (err) {
-            if (err.message === 'Topic does not exist') {
-                err = err.message
-            }
             console.log('subscribe err', err); // an error occurred
             res.status(500).send(err)
         } else {

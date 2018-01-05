@@ -1,29 +1,32 @@
 import Immutable from 'immutable'
 
 
-import * as consts from './../consts'
 
-const gensubscribeError = topicName => {
-    if (!topicName) {
-        return ''
-    }
-    return `Topic ${topicName} does not exist`
-}
+
 
 
 const initialState = Immutable.fromJS({
-    subscribeError: ''
+    subscribeError: '',
+    subscribeSuccessMessage: ''
 })
 
 
 const subscribeReducer = (state = initialState, action) => {
+    let subscribeError, subscribeSuccessMessage
     switch (action.type) {
-        case 'INVALID_SUBSCRIBE_TOPIC':
-            const topicName = action.payload.topicName
-            const subscribeError = gensubscribeError(topicName)
-            return state.merge({ subscribeError });
+        case 'SET_SUBSCRIBE_ERROR':
+            subscribeError = action.payload
+            subscribeSuccessMessage = ''
+            return state.merge({ subscribeError, subscribeSuccessMessage })
         case 'CLEAR_SUBSCRIBE_ERROR':
-            return state.set('subscribeError', '')
+            subscribeError = ''
+            subscribeSuccessMessage = ''
+            return state.merge({ subscribeError, subscribeSuccessMessage })
+        case 'SET_SUBSCRIBE_SUCCESS':
+            subscribeSuccessMessage = action.payload
+            subscribeError = ''
+            return state.merge({ subscribeSuccessMessage, subscribeError })
+
     }
     return state;
 }

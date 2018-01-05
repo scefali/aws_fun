@@ -1,5 +1,7 @@
 import Immutable from 'immutable'
 import { routerMiddleware, push } from 'react-router-redux'
+
+import { change } from 'redux-form'
 import * as _ from 'lodash'
 
 import * as api from './api'
@@ -28,13 +30,18 @@ export const subscribe = () => {
         dispatch(actions.clearSubscribeError())
         const state = getState()
         const topicName = util.subscribeSelector(state, 'topicName')
+        const action = util.subscribeSelector(state, 'action')
         api.subscribe(state).then(response => {
-            console.log('subscribe response: ', response.data)
+            console.log('reponse', response.data)
+            dispatch(actions.setSubscribeSuccess(response.data))
         }).catch(err => {
-            const message = err.response.data
-            if (message === 'Topic does not exist') {
-                dispatch(actions.invalidSubscribeTopic({ topicName }))
+            console.log('err', err)
+            const { code } = err
+            let message = `Could not ${action} to topic ${topicName}`
+            if (code === 'Topic does not exist') {
+                message = `Topic ${topicName} does not exist`
             }
+            dispatch(actions.setSubscribeError(message))
         })
     }
 }
@@ -57,12 +64,16 @@ export const getTopics = () => {
         const state = getState()
         api.getTopics(state).then(response => {
             const topics = _.map(response.data.Topics, (topicObj) => {
-                const topicArn = topicObj.TopicArn
-                const splitName = topicArn.split(':')
-                const topic = splitName[splitName.length - 1]
-                return topic
-            })
+                    const topicArn = topicObj.TopicArn
+                    const splitName = topicArn.split(':')
+                    const topic = splitName[splitName.length - 1]
+                    return topic
+                })
+                //no topics, maybe do something to notify user
+            if (!topics) return
             dispatch(actions.loadTopicList(topics))
+            const firstTopic = topics[0]
+            dispatch(change('subscribe', 'topicName', firstTopic))
         }).catch(error => {
 
         })

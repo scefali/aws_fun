@@ -1,7 +1,7 @@
 import Immutable from 'immutable'
 
 
-import * as consts from './../consts'
+
 
 
 
