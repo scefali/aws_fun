@@ -5,19 +5,28 @@ import Immutable from 'immutable'
 
 
 const initialState = Immutable.fromJS({
-    subscribeError: ''
+    error: '',
+    success: false
 })
 
 
 const messageReducer = (state = initialState, action) => {
-    // switch (action.type) {
-    //     case 'SET_TOPIC_ERROR':
-    //         const topicName = action.payload.topicName
-    //         const subscribeError = gensubscribeError(topicName)
-    //         return state.merge({ subscribeError });
-    //     case 'CLEAR_SUBSCRIBE_ERROR':
-    //         return state.set('subscribeError', '')
-    // }
+    let error, success
+    switch (action.type) {
+        case 'SET_MESSAGE_ERROR':
+            error = action.payload
+            success = false
+            return state.merge({ error, success })
+        case 'SET_MESSAGE_SUCCESS':
+            success = true
+            error = action.payload
+            return state.merge({ error, success })
+        case 'RESET_MESSAGE_FORM':
+            error = ''
+            success = false
+            return state.merge({ error, success })
+
+    }
     return state;
 }
 

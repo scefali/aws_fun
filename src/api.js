@@ -10,7 +10,6 @@ const localUrl = 'http://localhost:2000'
 const baseUrl = local ? localUrl : remoteUrl
 
 
-
 const apiAction = (route, data, verb) => {
     const endpoint = baseUrl + route
     return axios[verb](endpoint, data)

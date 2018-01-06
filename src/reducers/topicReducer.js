@@ -30,6 +30,10 @@ const topicReducer = (state = initialState, action) => {
         case 'LOAD_TOPIC_LIST':
             topics = action.payload
             return state.merge({ topics })
+        case 'RESET_TOPIC_FORM':
+            topicSuccessMessage = ''
+            topicSuccessMessage = ''
+            return state.merge({ topicSuccessMessage, topicSuccessMessage })
 
     }
     return state;

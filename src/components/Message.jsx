@@ -23,6 +23,12 @@ class MessageClass extends React.Component {
             Choose an existing topic then type in a subject and message. Press submit to send the message.
           </div>
           <h3 />
+          <div>
+            <h3 className="successMessage">{props.message}</h3>
+          </div>
+          <div>
+            <h3 className="errorMessage">{props.messageError}</h3>
+          </div>
           <Field name="topicName" className="" component="select">
             {props.topics.map((topicName) => (
               <option value={topicName} key={topicName}>
@@ -46,7 +52,6 @@ class MessageClass extends React.Component {
             Go To Subscribe
           </Button>
         </ButtonGroup>
-        {props.messageError}
       </div>
     )
   }
@@ -54,7 +59,10 @@ class MessageClass extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   const topics = state.getIn([ 'topic', 'topics' ])
-  return { topics }
+  let { success, error: messageError } = state.getIn([ 'message' ]).toJS()
+  let message = ''
+  if (success) message = 'Message successfully sent'
+  return { topics, message, messageError }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

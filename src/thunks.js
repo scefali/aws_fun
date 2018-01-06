@@ -11,9 +11,13 @@ import * as util from './util'
 
 export const sendMessage = () => {
     return (dispatch, getState) => {
+        dispatch(actions.resetMessageForm())
         const state = getState()
+        const topicName = util.messageSelector(state, 'topicName')
         api.sendMessage(state).then(response => {
-            console.log('sendMessage response: ', response.data)
+            dispatch(actions.setMessageSucess())
+        }).catch(err => {
+            dispatch(actions.setMessageError('Error in sending a message'))
         })
     }
 }
@@ -48,6 +52,7 @@ export const subscribe = () => {
 
 export const topic = () => {
     return (dispatch, getState) => {
+
         const state = getState()
         const { action: actionType, topicName } = util.topicSelector(state, 'action', 'topicName')
         api.topic(state).then(response => {
@@ -61,6 +66,7 @@ export const topic = () => {
 
 export const getTopics = () => {
     return (dispatch, getState) => {
+        dispatch(actions.resetTopicForm())
         const state = getState()
         api.getTopics(state).then(response => {
             const topics = _.map(response.data.Topics, (topicObj) => {
