@@ -20,7 +20,7 @@ const createTopic = (req, res) => {
 
 const deleteTopic = (req, res) => {
     const topicParams = { TopicArn: utils.getTopicArn(req.query.topicName) }
-    sns.listTopics(topicParams, function(err, data) {
+    sns.deleteTopic(topicParams, function(err, data) {
         if (err) {
             console.log(err, err.stack); // an error occurred
             res.status(500).send(err)

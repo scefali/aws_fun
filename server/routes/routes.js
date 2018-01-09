@@ -29,6 +29,7 @@ module.exports = app => {
     //FIXME: Use local server to delver HTML and assets
     app.get('/', staticPage)
     app.use('/dist', express.static('dist'))
+    app.use('/public', express.static('public'))
 
 
     //keep at bottom

@@ -80,6 +80,7 @@ export const getTopics = () => {
             dispatch(actions.loadTopicList(topics))
             const firstTopic = topics[0]
             dispatch(change('subscribe', 'topicName', firstTopic))
+            dispatch(change('message', 'topicName', firstTopic))
         }).catch(error => {
 
         })
