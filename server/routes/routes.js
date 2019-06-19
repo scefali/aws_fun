@@ -11,7 +11,7 @@ const messages = require('./messages')
 
 Sentry.init({ 
     dsn: process.env.SENTRY_DSN,
-    release: `aws-fun@${process.env.RELEASE_NUMBER}`
+    release: process.env.RELEASE_NUMBER
 });
 
 

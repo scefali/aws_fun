@@ -11,7 +11,7 @@ import configureStore from './store'
 
 import './style.less'
 
-Sentry.init({ dsn: window.SENTRY_DSN, release: `aws-fun@${window.RELEASE_NUMBER}` });
+Sentry.init({ dsn: window.SENTRY_DSN, release: window.RELEASE_NUMBER });
 
 const rootEl = document.getElementById('app')
 

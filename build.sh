@@ -17,11 +17,11 @@ export SENTRY_ORG=$SENTRY_ORG
 
 
 VERSION=$RELEASE_NUMBER
-COMMITS=$(sentry-cli releases propose-version)
+#COMMITS=$(sentry-cli releases propose-version)
 
 # Create a release
 sentry-cli releases new -p ${SENTRY_PROJECT} $VERSION
 
 
 # Associate commits with the release
-sentry-cli releases set-commits --auto $COMMITS
+sentry-cli releases set-commits --auto $VERSION
