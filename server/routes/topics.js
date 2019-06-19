@@ -8,7 +8,7 @@ const utils = require('./../utils')
 const createTopic = (req, res) => {
     const Name = req.body.topicName;
     if (Name.startsWith('bad')) {
-        throw new Error(`Using ${Name} topic name`)
+        throw new Error(`NEW ERROR: Using ${Name} topic name`)
     }
     const topicParams = { Name }
     sns.createTopic(topicParams, function (err, data) {
