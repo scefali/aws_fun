@@ -9,13 +9,20 @@ const messages = require('./messages')
 
 
 
-Sentry.init({ dsn: process.env.SENTRY_DSN });
+Sentry.init({ 
+    dsn: process.env.SENTRY_DSN,
+    release: `aws-fun@${process.env.RELEASE_NUMBER}`
+});
+
 
 
 const staticPage = (req, res) => {
     const indexPath = path.join(__dirname, '../../public/index.html')
     // res.sendFile(indexPath)
-    res.render(indexPath, {sentryDsn: process.env.SENTRY_DSN})
+    res.render(indexPath, {
+        sentryDsn: process.env.SENTRY_DSN,
+        releaseNumber: process.env.RELEASE_NUMBER
+    })
 }
 
 
