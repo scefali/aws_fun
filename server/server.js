@@ -1,18 +1,16 @@
 const env = require('node-env-file')
-env(__dirname + '/.env')
+env('.env')
 
 
 const app = require('./claudiaExpress')
 
 
 
-const port = 2000
+const port = process.env.PORT || 2000
 
 app.set('port', port)
-
-
-
-const server = app.listen(port, function(req, res) {
-    //TODO Update log port
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'ejs')
+app.listen(port, function (req, res) {
     console.log(`server listensing on: localhost:${port}`)
 })

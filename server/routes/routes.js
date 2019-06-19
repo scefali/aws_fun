@@ -1,15 +1,21 @@
 const path = require('path')
 const express = require('express')
+const Sentry = require('@sentry/node')
+const ejs = require('ejs');
 
-const utils = require('./../utils')
 const topics = require('./topics')
 const subscriptions = require('./subscriptions')
 const messages = require('./messages')
 
 
+
+Sentry.init({ dsn: process.env.SENTRY_DSN });
+
+
 const staticPage = (req, res) => {
     const indexPath = path.join(__dirname, '../../public/index.html')
-    res.sendFile(indexPath)
+    // res.sendFile(indexPath)
+    res.render(indexPath, {sentryDsn: process.env.SENTRY_DSN})
 }
 
 
@@ -30,6 +36,18 @@ module.exports = app => {
     app.get('/', staticPage)
     app.use('/dist', express.static('dist'))
     app.use('/public', express.static('public'))
+
+
+    app.use(Sentry.Handlers.errorHandler());
+
+    // Optional fallthrough error handler
+    app.use(function onError(err, req, res, next) {
+        console.error('error', err)
+        // The error id is attached to `res.sentry` to be returned
+        // and optionally displayed to the user for support.
+        res.statusCode = 500;
+        res.end(res.sentry + "\n");
+    });
 
 
     //keep at bottom

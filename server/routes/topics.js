@@ -33,6 +33,7 @@ const deleteTopic = (req, res) => {
 
 
 const getTopics = (req, res) => {
+    // throw new Error('test')
     sns.listTopics({}, function(err, data) {
         if (err) {
             console.log(err, err.stack); // an error occurred

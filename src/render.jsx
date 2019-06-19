@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { compose, createStore, applyMiddleware } from 'redux'
+import * as Sentry from '@sentry/browser';
 import { Provider } from 'react-redux'
 import createHistory from 'history/createHashHistory'
 import { Router } from 'react-router'
@@ -10,6 +10,10 @@ import { routerMiddleware, push, syncHistoryWithStore } from 'react-router-redux
 import configureStore from './store'
 
 import './style.less'
+
+console.log('window.SENTRY_DSN', window.SENTRY_DSN)
+Sentry.init({dsn: window.SENTRY_DSN});
+
 
 const rootEl = document.getElementById('app')
 

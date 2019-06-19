@@ -5,7 +5,8 @@ Locally uses a traditional express archicture
 
 ## Run Locally
 run "npm install"
-set AWS_ACCOUNT_ID to your ID
+copy .env_template to .env
+set AWS_ACCOUNT_ID, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY in .env
 run "npm run watch" at root level to run Webpack
 run "npm start" to start Express server
 
