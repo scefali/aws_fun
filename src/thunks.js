@@ -68,7 +68,6 @@ export const getTopics = () => {
     return (dispatch, getState) => {
         dispatch(actions.resetTopicForm())
         const state = getState()
-        // throw new Error('front end error')
         api.getTopics(state).then(response => {
             const topics = _.map(response.data.Topics, (topicObj) => {
                     const topicArn = topicObj.TopicArn

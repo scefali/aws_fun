@@ -11,7 +11,6 @@ import configureStore from './store'
 
 import './style.less'
 
-console.log('window.SENTRY_DSN', window.SENTRY_DSN)
 Sentry.init({dsn: window.SENTRY_DSN});
 
 

@@ -9,7 +9,6 @@ import Topic from './Topic'
 class Routes extends React.Component {
   render() {
     const { location } = this.props
-    console.log('location', location)
     return (
       <div className="mainContent">
         <h1>AWS Fun</h1>

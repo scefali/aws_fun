@@ -6,8 +6,12 @@ const utils = require('./../utils')
 
 
 const createTopic = (req, res) => {
-    const topicParams = { Name: req.body.topicName }
-    sns.createTopic(topicParams, function(err, data) {
+    const Name = req.body.topicName;
+    if (Name === 'bad') {
+        throw new Error('Using bad topic name')
+    }
+    const topicParams = { Name }
+    sns.createTopic(topicParams, function (err, data) {
         if (err) {
             console.log(err, err.stack); // an error occurred
             res.status(500).send(err)
@@ -20,7 +24,7 @@ const createTopic = (req, res) => {
 
 const deleteTopic = (req, res) => {
     const topicParams = { TopicArn: utils.getTopicArn(req.query.topicName) }
-    sns.deleteTopic(topicParams, function(err, data) {
+    sns.deleteTopic(topicParams, function (err, data) {
         if (err) {
             console.log(err, err.stack); // an error occurred
             res.status(500).send(err)
@@ -33,8 +37,7 @@ const deleteTopic = (req, res) => {
 
 
 const getTopics = (req, res) => {
-    // throw new Error('test')
-    sns.listTopics({}, function(err, data) {
+    sns.listTopics({}, function (err, data) {
         if (err) {
             console.log(err, err.stack); // an error occurred
             res.status(500).send(err)
