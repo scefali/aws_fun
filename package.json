@@ -9,7 +9,7 @@
     "author": "Stephen Cefali",
     "license": "MIT",
     "dependencies": {
-        "aws-sdk": "^2.53.0",
+        "aws-sdk": "^2.814.0",
         "aws-serverless-express": "^3.0.1",
         "babel-preset-react": "^6.24.1",
         "body-parser": "^1.17.1",
